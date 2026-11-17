@@ -1,6 +1,6 @@
 # Managed by Ansible - do not edit by hand
 server {
-    listen 80;
+    listen {{ nginx_port }};
     server_name _;
 
     location / {

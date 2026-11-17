@@ -1,0 +1,7 @@
+- name: Local WSL run (Docker installed inside Ubuntu)
+  hosts: all
+  become: true
+  roles:
+    - docker
+    - nginx
+    - stack

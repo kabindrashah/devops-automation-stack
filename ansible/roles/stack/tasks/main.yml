@@ -7,7 +7,7 @@
 
 - name: Wait until the app answers on port 80 through Nginx
   ansible.builtin.uri:
-    url: http://127.0.0.1/health
+    url: http://127.0.0.1:{{ nginx_port }}/health
     status_code: 200
   register: health
   retries: 20

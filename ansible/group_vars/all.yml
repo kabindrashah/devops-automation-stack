@@ -5,3 +5,4 @@ allowed_tcp_ports:
   - 80    # Nginx
   - 3000  # Grafana (lab only)
   - 9090  # Prometheus (lab only)
+nginx_port: 80
