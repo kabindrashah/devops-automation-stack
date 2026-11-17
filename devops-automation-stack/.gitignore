@@ -1,0 +1,8 @@
+.vagrant/
+*.log
+__pycache__/
+.pytest_cache/
+venv/
+.env
+*.pem
+*.key

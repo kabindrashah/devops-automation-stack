@@ -1,0 +1,15 @@
+- name: Start the app and monitoring stack with Docker Compose
+  ansible.builtin.command:
+    cmd: docker compose up -d --build
+    chdir: "{{ project_root }}/monitoring"
+  register: compose_up
+  changed_when: "'Created' in compose_up.stderr or 'Recreated' in compose_up.stderr or 'Started' in compose_up.stderr"
+
+- name: Wait until the app answers on port 80 through Nginx
+  ansible.builtin.uri:
+    url: http://127.0.0.1/health
+    status_code: 200
+  register: health
+  retries: 20
+  delay: 3
+  until: health.status == 200

@@ -1,0 +1,20 @@
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Install base packages
+  ansible.builtin.apt:
+    name: [ufw, curl, ca-certificates, gnupg, htop]
+    state: present
+
+- name: Allow required TCP ports through the firewall
+  ansible.builtin.command: "ufw allow {{ item }}/tcp"
+  loop: "{{ allowed_tcp_ports }}"
+  register: ufw_rule
+  changed_when: "'Skipping' not in ufw_rule.stdout"
+
+- name: Enable the firewall
+  ansible.builtin.command: ufw --force enable
+  register: ufw_enable
+  changed_when: "'enabled' in ufw_enable.stdout and 'already' not in ufw_enable.stdout"

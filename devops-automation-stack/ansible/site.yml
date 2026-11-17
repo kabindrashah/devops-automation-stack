@@ -1,0 +1,8 @@
+- name: Configure the deployment stack server
+  hosts: all
+  become: true
+  roles:
+    - common
+    - docker
+    - nginx
+    - stack

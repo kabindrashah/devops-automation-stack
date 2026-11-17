@@ -1,0 +1,19 @@
+groups:
+  - name: app-alerts
+    rules:
+      - alert: AppDown
+        expr: up{job="app"} == 0
+        for: 15s
+        labels:
+          severity: critical
+        annotations:
+          summary: "The app is down"
+          description: "Prometheus cannot scrape app:5000/metrics."
+
+      - alert: HighErrorRate
+        expr: sum(rate(app_requests_total{status=~"5.."}[1m])) > 0.1
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "More than 0.1 server errors per second"

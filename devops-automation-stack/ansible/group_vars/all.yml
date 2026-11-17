@@ -1,0 +1,7 @@
+# Folder that contains this repo on the target machine (Vagrant shares it at /vagrant)
+project_root: /vagrant
+allowed_tcp_ports:
+  - 22    # SSH
+  - 80    # Nginx
+  - 3000  # Grafana (lab only)
+  - 9090  # Prometheus (lab only)
