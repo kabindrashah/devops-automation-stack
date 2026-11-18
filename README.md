@@ -91,6 +91,10 @@ Both alerts back to normal after recovery:
 
 ![Alerts recovered](docs/img/alerts-recovered.png)
 
+Searching the app's error logs in Loki through Grafana (20 matching lines for 20 requests to `/boom`):
+
+![Loki logs](docs/img/loki-logs.png)
+
 More notes are in [docs/failure-test.md](docs/failure-test.md).
 
 ## What I learned
